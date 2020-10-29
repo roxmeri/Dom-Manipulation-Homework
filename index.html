@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Commnet box</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    
+  </head>
+  <body>
+    <div id="container">
+      <h2 id="title">Please leave a comment!</h2>
+      <br />
+
+      <form id="commentBox" name="commnet-box" >
+        <div id="formContainer">
+          <input
+            id="userName"
+            class="form-control"
+            type="text"
+            placeholder="Input your user name"
+          /><br />
+          <textarea
+            placeholder="Enter your comment here ..."
+            id="comments"
+            class="commentsText"
+            name="comments"
+            rows="5"
+            cols="50"
+          ></textarea><br />
+        </div>
+
+        <button id="btnAdd" type="submit" class="btn btn-primary blueButton" onsubmit="return onAddComment(event)">
+          Add
+        </button>
+      </form>
+      <div id="comments-container"></div>
+    </div>
+<script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+ 
+
+
+    <script>
+     $("#btnAdd").on("click", function onAddComment(event) {
+  event.preventDefault();
+
+  function randomId() {
+    return Math.floor(Math.random() * 1000 + 1);
+  }
+  var commentText = $("#comments").val();
+  if (commentText.length > 2) {
+    $("<div>", {
+      class: "newComment",
+      text: $("#userName").val() + ": " + $("#comments").val() + " ",
+      "data-id": randomId()
+    })
+      .append(
+        '<a><button type="button" id="removeBttn" class="btn btn-danger">Close</button></a>'
+      )
+      .appendTo("#comments-container")
+      .find("a")
+      .click(function () {
+        var idToremove = $(this).parent().data("id");
+        $(this).parent().remove();
+      });
+  }
+  $("#commentBox").each(function () {
+    this.reset();
+  });
+});
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  </body>
+</html>
